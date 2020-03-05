@@ -1,0 +1,25 @@
+insert(T a, int x) { //Inserts an element at desired position x.
+        if ((x <= totalelems) && (totalelems >= 2) && (x != 1)) {//if we have more than two nodes. (if x==1 use pushfront)
+            Element<T> *temp;
+            Element<T> *temp_follow;
+            temp = beg;
+            for (int i = 1; i < x; i++) { //We find desired position.
+                temp = temp->next;
+            }
+            temp_follow = temp->prev;
+            Element<T> *insert_node = new Element<T>; //Creates new node with data.
+            insert_node->data = a;
+            insert_node->prev = temp_follow; //The new nodes next and prev is set.
+            insert_node->next = temp;
+            temp_follow->next = insert_node; //Make sure existing nodes also point correctly.
+            temp->prev = insert_node;
+            totalelems++;
+
+        }
+        if (x == 1 || totalelems == 0) {//If we want to put a element in position 1.
+            push_front(a);
+        }
+        if(x > totalelems){
+            push_back(a);
+        }
+    }
